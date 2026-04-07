@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>КиберЗащита.by | Официальный образовательный портал</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Inter', system-ui, sans-serif;
+            background: #f5f7fb;
+            color: #1a2a3a;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0a2a3e 0%, #0d3b5a 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 3px solid #00a3c4;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #4dc9e8;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .stats-banner {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4dc9e8;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            flex-wrap: wrap;
+            background: white;
+            padding: 12px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 10px 22px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: #1a2a3a;
+        }
+
+        .nav-btn:hover {
+            background: #e8edf3;
+        }
+
+        .nav-btn.active {
+            background: #0d3b5a;
+            color: white;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #0a2a3e;
+            border-left: 4px solid #00a3c4;
+            padding-left: 20px;
+        }
+
+        .threat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .threat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .threat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #00a3c4;
+        }
+
+        .threat-icon {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #0d3b5a;
+        }
+
+        .threat-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #0d3b5a;
+        }
+
+        .threat-card p {
+            color: #556b82;
+            font-size: 0.95rem;
+        }
+
+        .detail-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: #00a3c4;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #0d2b45 0%, #1a3a5c 100%);
+            border-radius: 24px;
+            padding: 40px;
+            color: white;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .step-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .step-dot.active {
+            background: #00a3c4;
+            color: #0a2a3e;
+        }
+
+        .step-dot.completed {
+            background: #2e7d64;
+        }
+
+        .question-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .calc-options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .calc-option-btn {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 12px 28px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .calc-option-btn:hover {
+            background: rgba(0,163,196,0.5);
+        }
+
+        .calc-option-btn.selected {
+            background: #00a3c4;
+            color: #0a2a3e;
+            border-color: #00a3c4;
+        }
+
+        .calc-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .calc-nav-btn {
+            background: #00a3c4;
+            color: #0a2a3e;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .calc-nav-btn:hover {
+            background: #4dc9e8;
+        }
+
+        .calc-nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-panel {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .risk-level-text {
+            padding: 12px;
+            border-radius: 30px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .password-generator {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        .password-display {
+            background: #0a2a3e;
+            color: #4dc9e8;
+            font-size: 1.4rem;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            letter-spacing: 1px;
+            word-break: break-all;
+        }
+
+        .password-strength {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .checklist-item {
+            background: white;
+            border-radius: 16px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .checklist-item:hover {
+            transform: translateX(5px);
+            border-color: #00a3c4;
+        }
+
+        .checklist-item.completed {
+            background: #e8f5e9;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .checklist-item input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .map-container {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            text-align: center;
+        }
+
+        .region-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .region-card {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 16px;
+            border-left: 3px solid #00a3c4;
+            text-align: left;
+        }
+
+        .pdf-section {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            text-align: center;
+        }
+
+        .pdf-preview {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+
+        .pdf-preview h3 {
+            color: #0d3b5a;
+            margin: 20px 0 10px 0;
+        }
+
+        .pdf-preview h3:first-child {
+            margin-top: 0;
+        }
+
+        .pdf-preview ul, .pdf-preview ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .pdf-preview li {
+            margin: 5px 0;
+        }
+
+        .btn-pdf {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .btn-pdf:hover {
+            background: #b71c1c;
+            transform: scale(1.02);
+        }
+
+        .chatbot-container {
+            background: white;
+            border-radius: 24px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #0d3b5a, #1a5a7a);
+            color: white;
+            padding: 20px 25px;
+            text-align: center;
+        }
+
+        .chatbot-header h2 {
+            margin-bottom: 5px;
+        }
+
+        .chatbot-header p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .message {
+            display: flex;
+            max-width: 80%;
+            animation: messageFade 0.3s ease;
+        }
+
+        @keyframes messageFade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            align-self: flex-end;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+        }
+
+        .message-bubble {
+            padding: 12px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .message.user .message-bubble {
+            background: #00a3c4;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.bot .message-bubble {
+            background: white;
+            color: #1a2a3a;
+            border: 1px solid #e2e8f0;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 18px;
+            border: 1px solid #e2e8f0;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .chat-input:focus {
+            border-color: #00a3c4;
+            box-shadow: 0 0 0 2px rgba(0,163,196,0.1);
+        }
+
+        .chat-send-btn {
+            background: #00a3c4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .chat-send-btn:hover {
+            background: #0088a3;
+        }
+
+        .quick-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 10px 15px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .quick-btn {
+            background: #e8edf3;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quick-btn:hover {
+            background: #00a3c4;
+            color: white;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 8px 12px;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: #99aabb;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-6px); opacity: 1; }
+        }
+
+        .info-block {
+            background: #eef2f8;
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .info-block h3 {
+            color: #0d3b5a;
+            margin-bottom: 15px;
+        }
+
+        .btn-calc {
+            background: #00a3c4;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .btn-calc:hover {
+            background: #0088a3;
+        }
+
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e2a3a;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            z-index: 2000;
+            font-weight: 500;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            animation: toastFade 0.3s ease;
+            pointer-events: none;
+            font-size: 0.9rem;
+        }
+
+        @keyframes toastFade {
+            from { opacity: 0; transform: translateX(-50%) translateY(30px);}
+            to { opacity: 1; transform: translateX(-50%) translateY(0);}
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            max-width: 550px;
+            width: 90%;
+            padding: 35px;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #99aabb;
+        }
+
+        .modal-close:hover {
+            color: #1a2a3a;
+        }
+
+        footer {
+            background: #0a2a3e;
+            color: #99aabb;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 1.8rem; }
+            .section-title { font-size: 1.4rem; }
+            .question-text { font-size: 1.1rem; }
+            .calc-option-btn { padding: 8px 16px; font-size: 0.9rem; }
+            .message { max-width: 95%; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>КиберЗащита<span>.by</span></h1>
+    <p>Официальный образовательный портал по кибербезопасности<br>для детей и подростков Республики Беларусь</p>
+    <div class="stats-banner">
+        <div class="stat-card"><div class="stat-number">78%</div><div>подростков сталкивались с мошенниками</div></div>
+        <div class="stat-card"><div class="stat-number">3 млн</div><div>фишинговых атак в день в мире</div></div>
+        <div class="stat-card"><div class="stat-number">5 мин</div><div>нужно для взлома слабого пароля</div></div>
+    </div>
+</section>
+
+<div class="nav-tabs">
+    <button class="nav-btn active" data-tab="home">Главная</button>
+    <button class="nav-btn" data-tab="calculator">Калькулятор риска</button>
+    <button class="nav-btn" data-tab="password">Генератор паролей</button>
+    <button class="nav-btn" data-tab="checklist">Чек-лист</button>
+    <button class="nav-btn" data-tab="map">Карта угроз</button>
+    <button class="nav-btn" data-tab="pdf">Памятка PDF</button>
+    <button class="nav-btn" data-tab="chatbot">ИИ-помощник</button>
+</div>
+
+<div class="container">
+    <div id="home" class="section active">
+        <h2 class="section-title">Основные киберугрозы 2025-2026</h2>
+        <div class="threat-grid">
+            <div class="threat-card"><div class="threat-icon">Фишинг</div><h3>Фишинг</h3><p>Поддельные сайты банков, соцсетей и маркетплейсов.</p><span class="detail-link" onclick="openModal('phishing')">Подробнее</span></div>
+            <div class="threat-card"><div class="threat-icon">Звонки</div><h3>Звонки из банка</h3><p>Мошенники выманивают коды из СМС.</p><span class="detail-link" onclick="openModal('phone')">Подробнее</span></div>
+            <div class="threat-card"><div class="threat-icon">Взлом</div><h3>Взлом аккаунтов</h3><p>Кража паролей через фишинг или подбор.</p><span class="detail-link" onclick="openModal('social')">Подробнее</span></div>
+            <div class="threat-card"><div class="threat-icon">Выигрыши</div><h3>Фейковые выигрыши</h3><p>Требуют оплатить доставку приза.</p><span class="detail-link" onclick="openModal('prize')">Подробнее</span></div>
+            <div class="threat-card"><div class="threat-icon">Друзья</div><h3>Взломанный друг</h3><p>Просят деньги от имени друга.</p><span class="detail-link" onclick="openModal('friend')">Подробнее</span></div>
+            <div class="threat-card"><div class="threat-icon">Маркетплейсы</div><h3>Маркетплейсы</h3><p>Оплата напрямую продавцу.</p><span class="detail-link" onclick="openModal('market')">Подробнее</span></div>
+        </div>
+        
+        <div class="info-block">
+            <h3>Статистика киберпреступности в Беларуси</h3>
+            <p>По данным МВД Республики Беларусь, за 2025 год количество киберпреступлений выросло на 23%. Более 60% пострадавших — молодые люди в возрасте 14-25 лет.</p>
+        </div>
+
+        <div class="info-block">
+            <h3>5 главных правил кибербезопасности</h3>
+            <ul style="margin-left: 20px;">
+                <li>Используйте разные пароли для разных сервисов</li>
+                <li>Включите двухфакторную аутентификацию</li>
+                <li>Проверяйте ссылки перед переходом</li>
+                <li>Никогда не сообщайте код из СМС</li>
+                <li>Регулярно обновляйте приложения</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="calculator" class="section">
+        <div class="calculator-section">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2>Калькулятор риска взлома</h2>
+                <p>Ответьте на 10 вопросов и узнайте уровень вашей защищённости</p>
+            </div>
+            <div class="step-indicator" id="stepIndicator"></div>
+            <div class="question-card" id="questionCard">
+                <div class="question-text" id="questionText"></div>
+                <div class="calc-options" id="calcOptions"></div>
+                <div class="calc-nav">
+                    <button class="calc-nav-btn" id="prevBtn" disabled>Назад</button>
+                    <button class="calc-nav-btn" id="nextBtn">Далее</button>
+                </div>
+            </div>
+            <div class="result-panel" id="calcResultPanel" style="display: none;"></div>
+        </div>
+    </div>
+
+    <div id="password" class="section">
+        <div class="password-generator">
+            <h2 class="section-title">Генератор безопасных паролей</h2>
+            <div class="password-display" id="passwordDisplay">Нажмите Сгенерировать</div>
+            <div class="password-strength"><div class="strength-fill" id="strengthFill"></div></div>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin: 20px 0;">
+                <label><input type="checkbox" id="useUpper" checked> A-Z</label>
+                <label><input type="checkbox" id="useLower" checked> a-z</label>
+                <label><input type="checkbox" id="useNumbers" checked> 0-9</label>
+                <label><input type="checkbox" id="useSymbols"> !#$%&</label>
+                <label>Длина: <input type="number" id="passwordLength" value="12" min="6" max="30" style="width: 65px; padding: 5px;"></label>
+            </div>
+            <button class="btn-calc" onclick="generatePassword()">Сгенерировать</button>
+            <button class="btn-calc" onclick="copyPassword()" style="background: #2e7d64; margin-left: 10px;">Копировать</button>
+            <div class="info-block" style="margin-top: 25px;">
+                <h4>Рекомендации по созданию паролей</h4>
+                <p>Надёжный пароль должен содержать не менее 12 символов, включать буквы в разных регистрах, цифры и специальные символы.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="checklist" class="section">
+        <div style="background: white; border-radius: 24px; padding: 35px;">
+            <h2 class="section-title">Чек-лист цифровой гигиены</h2>
+            <div id="checklistContainer"></div>
+            <button class="btn-calc" onclick="resetChecklist()" style="background: #556b82;">Сбросить</button>
+            <button class="btn-calc" onclick="downloadChecklist()" style="background: #2e7d64; margin-left: 10px;">Скачать чек-лист</button>
+        </div>
+    </div>
+
+    <div id="map" class="section">
+        <div class="map-container">
+            <h2 class="section-title">Карта киберугроз — Беларусь</h2>
+            <div style="font-size: 4rem;">Карта</div>
+            <p>Актуальные схемы мошенничества по регионам</p>
+            <div class="region-stats">
+                <div class="region-card"><strong>Минск и Минская область</strong><br>Фишинг, звонки из банка</div>
+                <div class="region-card"><strong>Гомельская область</strong><br>Фейковые выигрыши, маркетплейсы</div>
+                <div class="region-card"><strong>Брестская область</strong><br>Взломанные аккаунты друзей</div>
+                <div class="region-card"><strong>Витебская область</strong><br>Лже-техподдержка</div>
+                <div class="region-card"><strong>Гродненская область</strong><br>Романтическое мошенничество</div>
+                <div class="region-card"><strong>Могилёвская область</strong><br>Наследство из-за границы</div>
+            </div>
+            <div class="info-block">
+                <strong>Важно!</strong> Мошенники постоянно адаптируют схемы. Если вы получили подозрительное сообщение — не отвечайте, проверьте информацию через официальные источники.
+            </div>
+        </div>
+    </div>
+
+    <div id="pdf" class="section">
+        <div class="pdf-section">
+            <h2 class="section-title">Распечатай памятку по кибербезопасности</h2>
+            <p>Скачайте и распечатайте памятку для себя, друзей или родителей.</p>
+            <div class="pdf-preview" id="pdfPreview">
+                <h3>ПАМЯТКА ПО КИБЕРБЕЗОПАСНОСТИ</h3>
+                <p><strong>Министерство внутренних дел Республики Беларусь</strong><br>Образовательный портал КиберЗащита.by</p>
+                <h3>5 главных правил</h3>
+                <ul><li>Используйте разные сложные пароли для каждого сервиса</li><li>Включите двухфакторную аутентификацию</li><li>Никогда не сообщайте код из СМС</li><li>Проверяйте ссылки перед переходом</li><li>Регулярно обновляйте приложения</li></ul>
+                <h3>Что делать, если вы стали жертвой мошенников</h3>
+                <ol><li>Немедленно заблокируйте карту</li><li>Сохраните скриншоты переписки</li><li>Обратитесь в милицию</li><li>Смените пароли на всех аккаунтах</li></ol>
+                <h3>Экстренные телефоны</h3>
+                <ul><li>МВД Беларуси: 102</li><li>Детский телефон доверия: 8-801-100-16-11</li></ul>
+            </div>
+            <button class="btn-pdf" onclick="generatePDF()">Скачать памятку (PDF)</button>
+            <button class="btn-calc" onclick="printMemo()" style="background: #556b82; margin-left: 10px;">Распечатать</button>
+        </div>
+    </div>
+
+    <div id="chatbot" class="section">
+        <div class="chatbot-container">
+            <div class="chatbot-header">
+                <h2>ИИ-помощник</h2>
+                <p>Задайте любой вопрос о кибербезопасности</p>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-bubble">
+                        Здравствуйте! Я ИИ-помощник портала КиберЗащита.by.<br>
+                        Задайте мне любой вопрос о кибербезопасности.<br><br>
+                        Например:<br>
+                        - Как распознать фишинг?<br>
+                        - Что делать при звонке из банка?<br>
+                        - Как создать надёжный пароль?
+                    </div>
+                </div>
+            </div>
+            <div class="quick-buttons">
+                <button class="quick-btn" onclick="sendQuickQuestion('фишинг')">Фишинг</button>
+                <button class="quick-btn" onclick="sendQuickQuestion('звонок из банка')">Звонок из банка</button>
+                <button class="quick-btn" onclick="sendQuickQuestion('пароль')">Надёжный пароль</button>
+                <button class="quick-btn" onclick="sendQuickQuestion('взлом аккаунта')">Взлом аккаунта</button>
+                <button class="quick-btn" onclick="sendQuickQuestion('выигрыш')">Фейковый выигрыш</button>
+                <button class="quick-btn" onclick="sendQuickQuestion('маркетплейс')">Маркетплейс</button>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Напишите ваш вопрос..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <button class="chat-send-btn" onclick="sendMessage()">Отправить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>2026 КиберЗащита.by | Образовательный проект по кибербезопасности</p>
+    <p style="font-size: 0.75rem; margin-top: 8px;">Проект подготовлен для республиканского конкурса по кибербезопасности</p>
+</footer>
+
+<div id="modal" class="modal"><div class="modal-content"><span class="modal-close" onclick="closeModal()">&times;</span><div id="modalBody"></div></div></div>
+
+<script>
+    // ========== OPENROUTER API ==========
+    const OPENROUTER_API_KEY = "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";
+    const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
+
+    function showToast(msg) {
+        let toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.innerText = msg;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    // ========== МОДАЛКИ ==========
+    const modalData = {
+        phishing: { title: "Фишинг", content: "Фишинг — поддельные сайты и письма. Проверяйте адрес сайта, не переходите по ссылкам из писем, включите двухфакторную аутентификацию." },
+        phone: { title: "Звонки из банка", content: "Настоящий банк никогда не просит код из СМС. Положите трубку и перезвоните сами по номеру с карты." },
+        social: { title: "Взлом аккаунтов", content: "Используйте сложные уникальные пароли (12+ символов), включите двухфакторную аутентификацию." },
+        prize: { title: "Фейковые выигрыши", content: "Настоящие розыгрыши не требуют предоплаты. Проверьте аккаунт отправителя, игнорируйте и блокируйте." },
+        friend: { title: "Взломанный друг", content: "Позвоните другу по видеосвязи, задайте личный вопрос. Не переводите деньги, не убедившись лично." },
+        market: { title: "Маркетплейсы", content: "Оплачивайте только через официальную платформу. Проверяйте ссылки, читайте отзывы о продавце." }
+    };
+    function openModal(type) { let m=document.getElementById('modal'),b=document.getElementById('modalBody'); b.innerHTML=`<h2>${modalData[type].title}</h2><div style="margin-top:15px;">${modalData[type].content}</div>`; m.classList.add('active'); }
+    function closeModal() { document.getElementById('modal').classList.remove('active'); }
+
+    // ========== НАВИГАЦИЯ ==========
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(btn.dataset.tab).classList.add('active');
+        });
+    });
+
+    // ========== КАЛЬКУЛЯТОР ==========
+    const calcQuestions = [
+        { text: "Дата рождения в открытом доступе в соцсетях?", options: ["Да","Нет"], scores: [15,0] },
+        { text: "На аватарке видно лицо или школу?", options: ["Да","Нет"], scores: [10,0] },
+        { text: "Одинаковый пароль для всех сервисов?", options: ["Да","Нет"], scores: [20,0] },
+        { text: "Переходите по ссылкам от незнакомцев?", options: ["Да","Иногда","Нет"], scores: [15,5,0] },
+        { text: "Включена двухфакторная аутентификация?", options: ["Да","Нет","Не знаю"], scores: [0,20,10] },
+        { text: "Фото в соцсетях с геолокацией?", options: ["Да","Иногда","Нет"], scores: [15,5,0] },
+        { text: "Кто видит список друзей?", options: ["Все","Друзья","Только я"], scores: [15,5,0] },
+        { text: "Проходили опросы вроде Кличка питомца?", options: ["Да","Нет"], scores: [10,0] },
+        { text: "Скачиваете приложения из непроверенных источников?", options: ["Да","Иногда","Нет"], scores: [15,5,0] },
+        { text: "Аккаунт когда-нибудь взламывали?", options: ["Да","Нет"], scores: [5,0] }
+    ];
+    let calcAnswers = new Array(10).fill(null);
+    let calcCurrentStep = 0;
+
+    function renderStepIndicator() {
+        let html = '';
+        for (let i = 0; i < calcQuestions.length; i++) {
+            let status = '';
+            if (calcAnswers[i] !== null) status = 'completed';
+            if (i === calcCurrentStep) status = 'active';
+            html += `<div class="step-dot ${status}">${i + 1}</div>`;
+        }
+        document.getElementById('stepIndicator').innerHTML = html;
+    }
+
+    function renderCurrentQuestion() {
+        const q = calcQuestions[calcCurrentStep];
+        document.getElementById('questionText').innerHTML = q.text;
+        let optionsHtml = '';
+        q.options.forEach((opt, idx) => {
+            const isSelected = calcAnswers[calcCurrentStep] === idx;
+            optionsHtml += `<button class="calc-option-btn ${isSelected ? 'selected' : ''}" onclick="selectAnswer(${idx})">${opt}</button>`;
+        });
+        document.getElementById('calcOptions').innerHTML = optionsHtml;
+        document.getElementById('prevBtn').disabled = calcCurrentStep === 0;
+        document.getElementById('nextBtn').innerHTML = calcCurrentStep === 9 ? 'Завершить' : 'Далее';
+        renderStepIndicator();
+    }
+
+    function selectAnswer(optionIndex) { calcAnswers[calcCurrentStep] = optionIndex; renderCurrentQuestion(); }
+    function nextStep() {
+        if (calcAnswers[calcCurrentStep] === null) { showToast('Выберите ответ'); return; }
+        if (calcCurrentStep < 9) { calcCurrentStep++; renderCurrentQuestion(); }
+        else { showCalcResult(); }
+    }
+    function prevStep() { if (calcCurrentStep > 0) { calcCurrentStep--; renderCurrentQuestion(); } }
+
+    function showCalcResult() {
+        let total = 0, max = 0;
+        for (let i = 0; i < 10; i++) { total += calcQuestions[i].scores[calcAnswers[i]]; max += Math.max(...calcQuestions[i].scores); }
+        let percent = Math.round(total / max * 100);
+        let level = percent <= 20 ? 'Низкий риск' : (percent <= 50 ? 'Средний риск' : (percent <= 75 ? 'Высокий риск' : 'Критический риск!'));
+        let color = percent <= 20 ? '#00c853' : (percent <= 50 ? '#ffd600' : (percent <= 75 ? '#ff6d00' : '#d50000'));
+        let recs = [];
+        if (calcAnswers[0] === 0) recs.push('Скрыть дату рождения');
+        if (calcAnswers[1] === 0) recs.push('Сменить аватарку');
+        if (calcAnswers[2] === 0) recs.push('Уникальные пароли');
+        if (calcAnswers[3] !== 2) recs.push('Не переходить по ссылкам');
+        if (calcAnswers[4] !== 0) recs.push('Включить двухфакторку');
+        if (calcAnswers[5] !== 2) recs.push('Отключить геолокацию');
+        if (calcAnswers[6] !== 2) recs.push('Скрыть список друзей');
+        if (calcAnswers[7] === 0) recs.push('Не участвовать в опросах');
+        if (calcAnswers[8] !== 2) recs.push('Качать из официальных магазинов');
+        if (calcAnswers[9] === 0) recs.push('Регулярно менять пароли');
+        
+        document.getElementById('questionCard').style.display = 'none';
+        document.getElementById('calcResultPanel').style.display = 'block';
+        document.getElementById('calcResultPanel').innerHTML = `<div style="text-align:center"><div style="font-size:3rem;font-weight:bold;color:${color}">${percent}%</div><div style="background:${color}20;color:${color};padding:12px;border-radius:30px;margin:15px 0">${level}</div><div style="text-align:left;background:rgba(0,0,0,0.2);border-radius:16px;padding:20px"><h4>Рекомендации</h4><ul>${recs.map(r=>`<li>${r}</li>`).join('')}</ul></div><button class="btn-calc" onclick="resetCalculator()">Пройти заново</button></div>`;
+        showToast(`Результат: ${percent}% — ${level}`);
+    }
+    function resetCalculator() { calcAnswers.fill(null); calcCurrentStep=0; document.getElementById('questionCard').style.display='block'; document.getElementById('calcResultPanel').style.display='none'; renderCurrentQuestion(); }
+    document.getElementById('prevBtn').addEventListener('click', prevStep);
+    document.getElementById('nextBtn').addEventListener('click', nextStep);
+    renderCurrentQuestion();
+
+    // ========== ГЕНЕРАТОР ПАРОЛЕЙ ==========
+    function generatePassword() {
+        let upper='ABCDEFGHJKLMNPQRSTUVWXYZ', lower='abcdefghijkmnpqrstuvwxyz', numbers='23456789', symbols='!#$%&?';
+        let chars='';
+        if(document.getElementById('useUpper').checked) chars+=upper;
+        if(document.getElementById('useLower').checked) chars+=lower;
+        if(document.getElementById('useNumbers').checked) chars+=numbers;
+        if(document.getElementById('useSymbols').checked) chars+=symbols;
+        if(!chars) { showToast('Выберите тип символов'); return; }
+        let len=parseInt(document.getElementById('passwordLength').value);
+        let password='';
+        for(let i=0;i<len;i++) password+=chars[Math.floor(Math.random()*chars.length)];
+        document.getElementById('passwordDisplay').innerText=password;
+        let strength=0;
+        if(/[A-Z]/.test(password)) strength+=20;
+        if(/[a-z]/.test(password)) strength+=20;
+        if(/[0-9]/.test(password)) strength+=20;
+        if(/[!#$%&?]/.test(password)) strength+=20;
+        if(len>=12) strength+=20;
+        document.getElementById('strengthFill').style.width=strength+'%';
+        document.getElementById('strengthFill').style.background=strength<40?'#ff4444':strength<70?'#ffaa00':'#00c853';
+        showToast('Пароль сгенерирован');
+    }
+    function copyPassword() { let p=document.getElementById('passwordDisplay').innerText; if(p && p!=='Нажмите Сгенерировать') { navigator.clipboard.writeText(p); showToast('Пароль скопирован'); } }
+
+    // ========== ЧЕК-ЛИСТ ==========
+    let checklistItems = ['Разные пароли для разных сервисов', 'Включил двухфакторную аутентификацию', 'Проверяю ссылки перед переходом', 'Никому не говорю коды из СМС', 'Регулярно обновляю приложения', 'Не скачиваю пиратский софт', 'Использую менеджер паролей', 'Проверяю отзывы на маркетплейсах'];
+    let checklistState = JSON.parse(localStorage.getItem('checklistState')) || new Array(8).fill(false);
+    function renderChecklist() {
+        let html='';
+        checklistItems.forEach((item,i)=> { html+=`<div class="checklist-item ${checklistState[i]?'completed':''}" onclick="toggleChecklist(${i})"><input type="checkbox" ${checklistState[i]?'checked':''} onclick="event.stopPropagation();toggleChecklist(${i})"><span>${item}</span></div>`; });
+        document.getElementById('checklistContainer').innerHTML=html;
+    }
+    function toggleChecklist(i) { checklistState[i]=!checklistState[i]; localStorage.setItem('checklistState',JSON.stringify(checklistState)); renderChecklist(); }
+    function resetChecklist() { checklistState.fill(false); localStorage.setItem('checklistState',JSON.stringify(checklistState)); renderChecklist(); showToast('Чек-лист сброшен'); }
+    function downloadChecklist() { let text='ЧЕК-ЛИСТ КИБЕРБЕЗОПАСНОСТИ\n\n'; checklistItems.forEach((item,i)=> { text+=`${checklistState[i]?'✓':'□'} ${item}\n`; }); text+='\nДата: '+new Date().toLocaleString(); let blob=new Blob([text],{type:'text/plain'}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='checklist.txt'; a.click(); showToast('Чек-лист скачан'); }
+    renderChecklist();
+
+    // ========== PDF ==========
+    function generatePDF() { const preview=document.getElementById('pdfPreview').innerHTML; let w=window.open('','_blank'); w.document.write(`<!DOCTYPE html><html><head><title>Памятка</title><meta charset="UTF-8"><style>body{font-family:Segoe UI,sans-serif;padding:40px}</style></head><body><h1>ПАМЯТКА ПО КИБЕРБЕЗОПАСНОСТИ</h1>${preview}</body></html>`); w.document.close(); w.print(); showToast('Памятка открыта'); }
+    function printMemo() { const preview=document.getElementById('pdfPreview').innerHTML; let w=window.open('','_blank'); w.document.write(`<!DOCTYPE html><html><head><title>Памятка</title><meta charset="UTF-8"><style>body{font-family:Segoe UI,sans-serif;padding:40px}</style></head><body><h1>ПАМЯТКА ПО КИБЕРБЕЗОПАСНОСТИ</h1>${preview}</body></html>`); w.document.close(); w.print(); showToast('Отправлено на печать'); }
+
+    // ========== ЧАТ-БОТ С API ==========
+    function getLocalAnswer(q) {
+        if (q.includes('102') || q.includes('милиция')) return "МВД Беларуси: 102. Детский телефон доверия: 8-801-100-16-11";
+        if (q.includes('привет')) return "Здравствуйте! Я ИИ-помощник. Задайте вопрос о кибербезопасности.";
+        if (q.includes('спасибо')) return "Пожалуйста! Берегите себя в интернете.";
+        return null;
+    }
+
+    async function getAIResponse(message) {
+        try {
+            const response = await fetch(OPENROUTER_URL, {
+                method: "POST",
+                headers: { "Authorization": `Bearer ${OPENROUTER_API_KEY}`, "Content-Type": "application/json", "HTTP-Referer": "https://киберзащита.by", "X-Title": "КиберПомощник" },
+                body: JSON.stringify({ "model": "google/gemini-2.0-flash-exp:free", "messages": [{ "role": "system", "content": "Ты эксперт по кибербезопасности. Отвечай кратко, полезно, на русском. Без смайликов." }, { "role": "user", "content": message }], "max_tokens": 500 })
+            });
+            const data = await response.json();
+            if (data.error) return "Ошибка API. Попробуйте позже.";
+            return data.choices[0].message.content;
+        } catch (error) {
+            console.error(error);
+            return "Не удалось подключиться к серверу. Проверьте интернет.";
+        }
+    }
+
+    async function processMessage(msg) {
+        const local = getLocalAnswer(msg.toLowerCase());
+        if (local) { addMessage(local, 'bot'); return; }
+        showTyping();
+        const reply = await getAIResponse(msg);
+        removeTyping();
+        addMessage(reply, 'bot');
+    }
+
+    function addMessage(text, sender) {
+        const div = document.getElementById('chatMessages');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${sender}`;
+        msgDiv.innerHTML = `<div class="message-bubble">${text.replace(/\n/g, '<br>')}</div>`;
+        div.appendChild(msgDiv);
+        div.scrollTop = div.scrollHeight;
+    }
+
+    function showTyping() { let d=document.getElementById('chatMessages'); let t=document.createElement('div'); t.className='message bot'; t.id='typingIndicator'; t.innerHTML='<div class="message-bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>'; d.appendChild(t); d.scrollTop=d.scrollHeight; }
+    function removeTyping() { let t=document.getElementById('typingIndicator'); if(t) t.remove(); }
+    async function sendMessage() { let input=document.getElementById('chatInput'); let msg=input.value.trim(); if(!msg) return; addMessage(msg,'user'); input.value=''; await processMessage(msg); }
+    async function sendQuickQuestion(q) { addMessage(q,'user'); await processMessage(q); }
+    document.getElementById('chatInput').addEventListener('keypress', (e) => { if(e.key==='Enter') sendMessage(); });
+
+    showToast('Добро пожаловать на портал КиберЗащита.by');
+</script>
+</body>
+</html>
