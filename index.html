@@ -34,13 +34,21 @@
             --gloss-bg: #151a24;
         }
 
-        body {
-            font-family: system-ui, 'Segoe UI', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.5;
-            transition: background 0.3s, color 0.3s;
-        }
+body {
+    font-family: system-ui, 'Segoe UI', sans-serif;
+    /* background: var(--bg-primary);  ← закомментируйте или удалите эту строку */
+    color: var(--text-primary);
+    line-height: 1.5;
+    transition: background 0.3s, color 0.3s;
+    
+    /* 👇 НОВЫЙ ФОН 👇 */
+    background-image: url('1776261027.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #0b2b3b; /* цвет пока грузится картинка */
+}
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
