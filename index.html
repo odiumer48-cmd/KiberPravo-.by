@@ -9,6 +9,52 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            /* ========== КАСТОМНЫЕ ИКОНКИ ========== */
+.icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+/* Статистика в шапке */
+.icon-stats { background-image: url('176431201.png'); }
+
+/* Карточки угроз */
+.icon-phishing { background-image: url('176431188.png'); }      /* 💰 - инвестиции/фишинг */
+.icon-call { background-image: url('176431189.png'); }         /* 📞 - звонок из банка */
+.icon-hack { background-image: url('176431194.png'); }         /* 👤 - взлом аккаунта */
+.icon-market { background-image: url('176431191.png'); }       /* 🛒 - маркетплейсы */
+.icon-prize { background-image: url('176431195.png'); }        /* 💸 - фейковый выигрыш */
+.icon-invest { background-image: url('176431188.png'); }       /* 💰 - инвестиции */
+
+/* Карта угроз */
+.icon-map { background-image: url('176431192.png'); }          /* 📍 - метка */
+
+/* Глоссарий */
+.icon-glossary { background-image: url('176431200.png'); }     /* ☁️ - облако/глоссарий */
+
+/* Совет дня */
+.icon-tip { background-image: url('176431193.png'); }          /* 💡 - лампочка */
+
+/* Романтическое мошенничество */
+.icon-romance { background-image: url('176431196.png'); }      /* ❤️ - сердце */
+
+/* Чек-лист */
+.icon-check { background-image: url('176431199.png'); }        /* ✅ - галочка */
+
+/* Обновления */
+.icon-refresh { background-image: url('176431198.png'); }      /* 🔄 - обновление */
+
+/* Рейтинг/отзывы */
+.icon-star { background-image: url('176431197.png'); }         /* ⭐ - звезда */
+
+/* Безопасность (замок) */
+.icon-security { background-image: url('176431190.png'); }     /* 🔒 - замок */
         }
 
         /* ========== ТОЛЬКО ТЁМНАЯ ТЕМА ========== */
@@ -663,7 +709,10 @@ body {
     <h1>КиберПраво<span>.by</span></h1>
     <p>Твои права в интернете — знай, защищай, действуй</p>
     <div class="stats">
-        <div class="stat-card"><span class="stat-number" id="stat1">78%</span><br>молодёжи сталкивались с обманом</div>
+<div class="stat-card">
+    <span class="icon icon-stats"></span>
+    <span class="stat-number">78%</span><br>молодёжи сталкивались с обманом
+</div>
         <div class="stat-card"><span class="stat-number" id="stat2">3 млн</span><br>атак в день</div>
         <div class="stat-card"><span class="stat-number" id="stat3">5 мин</span><br>на взлом слабого пароля</div>
     </div>
